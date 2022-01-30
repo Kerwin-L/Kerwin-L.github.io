@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerwin-l.github.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="今天终于发现这个神奇的操作了，transition ，今天深入了解了下，只要在当前的样式中设置了 transition，未来如果对当前 dom 的样式进行更改，则会通过 transition 进行样式的过渡，非常的顺滑，下面就对方法进行记录 先从样式边变形开始，这可以增加样式的多样性 一、CSS3 变形transform 属性的的基本语法如下 transform: none | &lt;trans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3 动画">
+<meta property="og:url" content="http://kerwin-l.github.com/2018/12/12/css/css3-%E5%8A%A8%E7%94%BB/index.html">
+<meta property="og:site_name" content="zerlPark">
+<meta property="og:description" content="今天终于发现这个神奇的操作了，transition ，今天深入了解了下，只要在当前的样式中设置了 transition，未来如果对当前 dom 的样式进行更改，则会通过 transition 进行样式的过渡，非常的顺滑，下面就对方法进行记录 先从样式边变形开始，这可以增加样式的多样性 一、CSS3 变形transform 属性的的基本语法如下 transform: none | &lt;trans">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-12-12T07:36:59.000Z">
+<meta property="article:modified_time" content="2022-01-30T09:40:43.032Z">
+<meta property="article:author" content="Laoluo">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kerwin-l.github.com/2018/12/12/css/css3-%E5%8A%A8%E7%94%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://kerwin-l.github.com/2018/12/12/css/css3-%E5%8A%A8%E7%94%BB/","path":"2018/12/12/css/css3-动画/","title":"css3 动画"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>css3 动画 | zerlPark</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zerlPark</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81CSS3-%E5%8F%98%E5%BD%A2"><span class="nav-number">1.</span> <span class="nav-text">一、CSS3 变形</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2D-transform-%E5%B8%B8%E7%94%A8%E7%9A%84-transform-function-%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">2D transform 常用的 transform-function 的功能：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3D-transform-%E5%B8%B8%E7%94%A8%E7%9A%84-transform-function-%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.</span> <span class="nav-text">3D transform 常用的 transform-function 的功能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81CSS3-%E8%BF%87%E6%B8%A1-%E2%80%94%E2%80%94-transition"><span class="nav-number"></span> <span class="nav-text">二、CSS3 过渡 —— transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E8%BF%87%E6%B8%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">1、过渡属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">3、过渡动画函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81animation"><span class="nav-number"></span> <span class="nav-text">三、animation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initial-value%EF%BC%9A%EF%BC%88%E5%88%9D%E5%A7%8B%E5%80%BC%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">initial value：（初始值）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%88%AB%E8%A7%A3%E9%87%8A%EF%BC%9A-animation-fill-mode"><span class="nav-number">1.</span> <span class="nav-text">特别解释： animation-fill-mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#animation-play-state"><span class="nav-number">2.</span> <span class="nav-text">animation-play-state</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Laoluo</p>
+  <div class="site-description" itemprop="description">欢迎来到老罗的小地盘~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://kerwin-l.github.com/2018/12/12/css/css3-%E5%8A%A8%E7%94%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Laoluo">
+      <meta itemprop="description" content="欢迎来到老罗的小地盘~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zerlPark">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          css3 动画
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-12-12 15:36:59" itemprop="dateCreated datePublished" datetime="2018-12-12T15:36:59+08:00">2018-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-30 17:40:43" itemprop="dateModified" datetime="2022-01-30T17:40:43+08:00">2022-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>今天终于发现这个神奇的操作了，transition ，今天深入了解了下，只要在当前的样式中设置了 transition，未来如果对当前 dom 的样式进行更改，则会通过 transition 进行样式的过渡，非常的顺滑，下面就对方法进行记录</p>
+<p>先从样式边变形开始，这可以增加样式的多样性</p>
+<h4 id="一、CSS3-变形"><a href="#一、CSS3-变形" class="headerlink" title="一、CSS3 变形"></a>一、CSS3 变形</h4><p>transform 属性的的基本语法如下</p>
+<p><code>transform: none | &lt;transform-function&gt; </code></p>
+<h5 id="2D-transform-常用的-transform-function-的功能："><a href="#2D-transform-常用的-transform-function-的功能：" class="headerlink" title="2D transform 常用的 transform-function 的功能："></a>2D transform 常用的 transform-function 的功能：</h5><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>translate()</td>
+<td>移动元素，根据X轴和Y轴坐标重新定位元素位置，扩展函数有 translateX() , translateY()</td>
+</tr>
+<tr>
+<td>scale()</td>
+<td>缩小或放大元素</td>
+</tr>
+<tr>
+<td>rotate()</td>
+<td>2d 旋转元素</td>
+</tr>
+<tr>
+<td>skew()</td>
+<td>元素倾斜，在此基础上扩展 skewX() , skewY()</td>
+</tr>
+<tr>
+<td>matrix()</td>
+<td>定义矩阵变形</td>
+</tr>
+</tbody></table>
+<h5 id="3D-transform-常用的-transform-function-的功能"><a href="#3D-transform-常用的-transform-function-的功能" class="headerlink" title="3D transform 常用的 transform-function 的功能"></a>3D transform 常用的 transform-function 的功能</h5><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>translate3d()</td>
+<td>指定一个3D变形移动位移量</td>
+</tr>
+<tr>
+<td>translateZ()</td>
+<td>在 Z 轴上的位移</td>
+</tr>
+<tr>
+<td>scale3d(sx,sy,sz)</td>
+<td>放大、缩小</td>
+</tr>
+<tr>
+<td>scaleZ(s)</td>
+<td></td>
+</tr>
+<tr>
+<td>rotate3d(x,y,z,a)</td>
+<td>x,y,z 分别为绕各轴的矢量值（0-1的数值），a为角度值__3d旋转</td>
+</tr>
+<tr>
+<td>rotateX()、rotateY()、rotateZ()</td>
+<td></td>
+</tr>
+<tr>
+<td>perspective()</td>
+<td>透视投影，值越大角度出现的越远，值越小，角度出现的越近,transform: perspective(300px)</td>
+</tr>
+<tr>
+<td>matrix3d()</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="二、CSS3-过渡-——-transition"><a href="#二、CSS3-过渡-——-transition" class="headerlink" title="二、CSS3 过渡 —— transition"></a>二、CSS3 过渡 —— transition</h3><p><code>transition: &lt;property&gt; &lt;duration&gt;  &lt;animation type&gt;  &lt;delay&gt; </code></p>
+<p>相当于 transition:   &lt;过渡属性&gt;  &lt;过渡所需时间&gt; &lt;过渡动画函数&gt;  &lt;过渡延迟时间&gt;</p>
+<h4 id="1、过渡属性"><a href="#1、过渡属性" class="headerlink" title="1、过渡属性"></a>1、过渡属性</h4><p>指定某一种 css 样式进行过渡</p>
+<p>例：</p>
+<p>transition-property: all || none || width || background-color ….基本的css 样式都能</p>
+<h4 id="3、过渡动画函数"><a href="#3、过渡动画函数" class="headerlink" title="3、过渡动画函数"></a>3、过渡动画函数</h4><p>该属性指定某种指定的过渡函数： </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>linear</td>
+<td>规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。</td>
+</tr>
+<tr>
+<td>ease</td>
+<td>规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）</td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。</td>
+</tr>
+<tr>
+<td>cubic-bezier(n,n,n,n)</td>
+<td>cubic-bezier(n,n,n,n)    在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。</td>
+</tr>
+</tbody></table>
+<h3 id="三、animation"><a href="#三、animation" class="headerlink" title="三、animation"></a>三、animation</h3><p><code>animation: &lt;animtion-name&gt;  &lt;animation-duration&gt; &lt;animation-timing-function&gt;&lt;animation-delay&gt;&lt;animation-iteration-count&gt;&lt;animation-direction&gt;&lt;animition-fill-code&gt;&lt;animation-play-state</code></p>
+<p>在每个动画定义中，<strong>顺序</strong>很重要：解析为<code>&lt;time&gt;</code>的第一个值会被分配给 <code>animation-duration</code>，第二个分配给 <code>animation-delay</code></p>
+<h2 id="initial-value：（初始值）"><a href="#initial-value：（初始值）" class="headerlink" title="initial value：（初始值）"></a>initial value：（初始值）</h2><table>
+<thead>
+<tr>
+<th align="center">变量名</th>
+<th>值(第一个值都为初始值)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">animation-name</td>
+<td>none</td>
+</tr>
+<tr>
+<td align="center">animation-duration</td>
+<td>0s</td>
+</tr>
+<tr>
+<td align="center">animation-timing-function</td>
+<td>ease</td>
+</tr>
+<tr>
+<td align="center">animation-delay</td>
+<td>0s</td>
+</tr>
+<tr>
+<td align="center">animaiton-iteration-count(运行次数)</td>
+<td>1 次数（可为小数）/ infinite</td>
+</tr>
+<tr>
+<td align="center">animaiton-direction</td>
+<td>normal/reverse/alternate/alernate-reverse</td>
+</tr>
+<tr>
+<td align="center">animation-fill-mode</td>
+<td>none  / forwards / backwords / both</td>
+</tr>
+<tr>
+<td align="center">animation-play-state</td>
+<td>running  / paused</td>
+</tr>
+</tbody></table>
+<h4 id="特别解释：-animation-fill-mode"><a href="#特别解释：-animation-fill-mode" class="headerlink" title="特别解释： animation-fill-mode"></a>特别解释： animation-fill-mode</h4><p>首先，动画可以划分为 <strong>初始状态</strong>  <strong>等待期</strong>  <strong>动画执行期</strong>  <strong>完成期</strong>  四个阶段</p>
+<p>forwards 表示 等待期保持原始样式，完成期间保持最后一帧样式</p>
+<p>backwards 表示等待期保持第一帧样式，完成期跳转到<strong>初始样式</strong></p>
+<p>none 默认值，等待期和完成期都是 <strong>初始样式</strong></p>
+<p>both:  表示等待期 为第一帧样式， 完成期间保持最后一帧样式</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000003867335">这个回答的第一条的图很形象的描述</a></p>
+<h4 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">保持动画的运行,当 hover 时运行，离开时暂停</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">下面是一个长条形在 hover 时转动 ，离开时自动暂停，hover 时从暂停位置继续开始</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: spin <span class="number">1s</span> linear infinite;</span><br><span class="line">    <span class="attribute">animation-play-state</span>: paused;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">animation-play-state</span>: running;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> spin&#123;</span><br><span class="line">    <span class="selector-tag">to</span>&#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">360deg</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.color</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line">---- 下面为 <span class="selector-tag">HTML</span> ----</span><br><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;<span class="attribute">color</span>&quot;&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/css/" rel="tag"># css</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/12/10/database/Mongoose%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Mongoose  学习笔记">
+                  <i class="fa fa-chevron-left"></i> Mongoose  学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/12/15/javascript/setTimout%E7%94%A8%E6%B3%95/" rel="next" title="setTimout用法">
+                  setTimout用法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Laoluo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

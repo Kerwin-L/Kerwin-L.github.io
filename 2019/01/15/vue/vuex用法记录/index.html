@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerwin-l.github.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Vuex  人称：状态管理模式 一、State 组件使用方法 通过 computed 形式  12345678const Counter &#x3D; &amp;#123;    template: &#96;&lt;div&gt;&amp;#123;&amp;#123; count &amp;#125;&amp;#125;&lt;&#x2F;div&gt;&#96;,    computed:&amp;#123;        count()&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex 用法记录">
+<meta property="og:url" content="http://kerwin-l.github.com/2019/01/15/vue/vuex%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="zerlPark">
+<meta property="og:description" content="Vuex  人称：状态管理模式 一、State 组件使用方法 通过 computed 形式  12345678const Counter &#x3D; &amp;#123;    template: &#96;&lt;div&gt;&amp;#123;&amp;#123; count &amp;#125;&amp;#125;&lt;&#x2F;div&gt;&#96;,    computed:&amp;#123;        count()&amp;#123;">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-01-15T07:09:38.000Z">
+<meta property="article:modified_time" content="2022-01-30T09:40:43.036Z">
+<meta property="article:author" content="Laoluo">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kerwin-l.github.com/2019/01/15/vue/vuex%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://kerwin-l.github.com/2019/01/15/vue/vuex%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/","path":"2019/01/15/vue/vuex用法记录/","title":"vuex 用法记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vuex 用法记录 | zerlPark</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zerlPark</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81State-%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">一、State 组件使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-getters"><span class="nav-number">1.1.</span> <span class="nav-text">二、 getters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">通过属性访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%96%B9%E6%B3%95%E8%AE%BF%E9%97%AE"><span class="nav-number">1.2.</span> <span class="nav-text">通过方法访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E4%B8%8A%E5%90%8C%E6%9C%89-mapGetters-%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">与上同有 mapGetters 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">后续：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Laoluo</p>
+  <div class="site-description" itemprop="description">欢迎来到老罗的小地盘~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://kerwin-l.github.com/2019/01/15/vue/vuex%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Laoluo">
+      <meta itemprop="description" content="欢迎来到老罗的小地盘~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zerlPark">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vuex 用法记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-01-15 15:09:38" itemprop="dateCreated datePublished" datetime="2019-01-15T15:09:38+08:00">2019-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-30 17:40:43" itemprop="dateModified" datetime="2022-01-30T17:40:43+08:00">2022-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Vuex  人称：状态管理模式</p>
+<h2 id="一、State-组件使用方法"><a href="#一、State-组件使用方法" class="headerlink" title="一、State 组件使用方法"></a>一、State 组件使用方法</h2><ol>
+<li>通过 computed 形式</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">    <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="function"><span class="title">count</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> store.state.count; <span class="comment">//store 为 new Vuex.store(&#123;&#125;) 创建的对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Vuex 通过  <code>store</code> 选项，提供一种机制将状态从根组件注入到每一个子组件（调用 Vue.use(Vuex)）:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el： <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    store,</span><br><span class="line">    <span class="attr">components</span>:&#123; counter &#125;,</span><br><span class="line">    <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">		&lt;div class=&quot;app&quot;&gt;</span></span><br><span class="line"><span class="string">			&lt;counter&gt;&lt;/counter&gt;</span></span><br><span class="line"><span class="string">		&lt;/div&gt;</span></span><br><span class="line"><span class="string">	`</span> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过在根组件中注册了 store ，所以该 <code>store</code> 实例会注入到根组件下的所有子组件中，且子组件能通过 <code>this.$store</code> 进行访问，所以 Counter  实例可以更新为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.$store.state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>mapState 辅助函数</code></li>
+</ol>
+<p>用于多个变量的注入，减少重复敲代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapState &#125; <span class="keyword">from</span> vuex</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">    <span class="attr">computed</span>:  mapState(&#123;</span><br><span class="line">        <span class="comment">//箭头函数可以使代码更简练</span></span><br><span class="line"> 		<span class="attr">count</span>: <span class="function"><span class="params">state</span>=&gt;</span>state.count,</span><br><span class="line">        </span><br><span class="line">       	<span class="comment">//传入字符串参数 等同于 state=&gt;state.count</span></span><br><span class="line">        <span class="attr">count2</span>: <span class="string">&#x27;count&#x27;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//如果使用 this  必须使用常规函数</span></span><br><span class="line">        <span class="function"><span class="title">countNumber</span>(<span class="params">state</span>)</span>&#123;</span><br><span class="line">    		<span class="keyword">return</span> state.count + <span class="built_in">this</span>.localCounts</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果计算属性的名称与 state  中子节点的名称相同，则可以往 <code>mapState()</code> 传入数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">computed: mapState([</span><br><span class="line">    <span class="string">&#x27;count&#x27;</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、-getters"><a href="#二、-getters" class="headerlink" title="二、 getters"></a>二、 getters</h3><p>可以看做 store  的计算属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.store(&#123;</span><br><span class="line">    <span class="attr">state</span>:&#123;</span><br><span class="line">        <span class="attr">todos</span>:[</span><br><span class="line">  			&#123;<span class="attr">id</span>: <span class="number">1</span>,<span class="attr">name</span>: <span class="string">&#x27;laoluo&#x27;</span>,<span class="attr">done</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">id</span>: <span class="number">2</span>,<span class="attr">name</span>: <span class="string">&#x27;xiaoluo&#x27;</span>,<span class="attr">done</span>: <span class="literal">false</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">getters</span>:&#123;</span><br><span class="line">        <span class="attr">doneTodos</span>: <span class="function"><span class="params">state</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> state.todos.filter(<span class="function"><span class="params">todo</span>=&gt;</span>todo.done);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过属性访问"><a href="#通过属性访问" class="headerlink" title="通过属性访问"></a>通过属性访问</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.getters.doneTodos; <span class="comment">//[&#123;id: 1,name: &#x27;laoluo&#x27;,done: true&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>getters 同样接受其他 getters 当做第二参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getters:&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">    <span class="attr">doneTodosCount</span>: <span class="function">(<span class="params">state,getters</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getters.doneTodos.length</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.getters.doneTodosCount <span class="comment">// 1 </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过方法访问"><a href="#通过方法访问" class="headerlink" title="通过方法访问"></a>通过方法访问</h3><p>可以通过 getters 返回一个函数，通过给函数传参等到想要的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getters:&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">    <span class="attr">getTodoById</span>: <span class="function">(<span class="params">state</span>)=&gt;</span><span class="function">(<span class="params">id</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> state.todos.find(<span class="function"><span class="params">todo</span>=&gt;</span>todo.id === id);</span><br><span class="line">        <span class="comment">//find() 找到第一个符合条件的值并返回</span></span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store.getters.getTodoById(<span class="number">1</span>) <span class="comment">//[&#123;id: 1,name: &#x27;laoluo&#x27;,done: true&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="与上同有-mapGetters-属性"><a href="#与上同有-mapGetters-属性" class="headerlink" title="与上同有 mapGetters 属性"></a>与上同有 mapGetters 属性</h3><h3 id="后续："><a href="#后续：" class="headerlink" title="后续："></a>后续：</h3><p>双向绑定的计算属性</p>
+<p>本身如果使用vuex 并不能直接通过 <code>v-model</code> 直接进行绑定，因为本身 vuex 的修改是要经过 mutation 进行监控。</p>
+<p>所以可以通过一个双向绑定的计算属性进行设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=<span class="string">&quot;message&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">computed:&#123;</span><br><span class="line">	<span class="attr">message</span>: &#123;</span><br><span class="line">		<span class="function"><span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">this</span>.$store.state.obj.message</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">set</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">			<span class="built_in">this</span>.$store.commint(<span class="string">&#x27;updateMessage&#x27;</span>,value)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/01/12/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/" rel="prev" title="作用域闭包">
+                  <i class="fa fa-chevron-left"></i> 作用域闭包
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/01/23/css/%E5%B0%8F%E8%AE%B0-inline-%E4%B8%AD%E7%9A%84%E5%B0%8F%E5%9D%91/" rel="next" title="小记 inline 中的小坑">
+                  小记 inline 中的小坑 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Laoluo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
